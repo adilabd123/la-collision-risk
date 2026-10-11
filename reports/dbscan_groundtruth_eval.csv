@@ -1,0 +1,12 @@
+,value
+intersection_detectable,66.0
+intersection_recall,1.0
+intersection_crash_capture,1.0
+intersection_fragments,1.0
+corridor_detectable,24.0
+corridor_recall,0.917
+corridor_crash_capture,0.832
+corridor_fragments,2.32
+cluster_precision,0.914
+type_accuracy,0.897
+background_in_hotspots,0.0142

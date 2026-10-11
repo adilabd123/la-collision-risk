@@ -1,0 +1,12 @@
+feature_a,feature_b,r
+free_flow_speed_mph,speed_limit_mph,1.0
+Collision_Hour,Collision_Hour_Frac,0.9988062583855798
+speed_differential_mph,speed_ratio,-0.9927133727659716
+congestion_index,speed_ratio,-0.991326375736598
+driver_age,license_years,0.9888886289650631
+congestion_index,speed_differential_mph,0.9841807465439193
+observed_speed_mph,speed_ratio,0.9697740308893167
+congestion_index,observed_speed_mph,-0.9614909772499168
+observed_speed_mph,speed_differential_mph,-0.9465960015029083
+dist_to_intersection_m,intersection_complexity,-0.8992136338612438
+at_intersection,intersection_complexity,0.8788311152738865

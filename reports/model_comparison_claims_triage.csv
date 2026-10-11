@@ -1,0 +1,4 @@
+model,prevalence_baseline,oof_pr_auc,test_pr_auc,test_roc_auc,test_brier,optimised_threshold,default_0.50_recall,default_0.50_precision,fixed_0.20_recall,fixed_0.20_precision,optimised_recall,optimised_precision
+logistic_regression,0.1114,0.2521,0.2128,0.6424,0.141,0.31,0.2724,0.2512,0.8172,0.1253,0.5502,0.1745
+random_forest,0.1114,0.2346,0.2083,0.6517,0.1137,0.26,0.0143,0.381,0.7724,0.138,0.5484,0.1835
+xgboost,0.1114,0.2313,0.1945,0.6292,0.1071,0.2,0.086,0.3265,0.5323,0.175,0.5323,0.175

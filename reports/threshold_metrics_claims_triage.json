@@ -1,0 +1,125 @@
+{
+  "logistic_regression": {
+    "default_0.50": {
+      "threshold": 0.5,
+      "recall": 0.2724,
+      "precision": 0.2512,
+      "f2": 0.2679,
+      "flagged_share": 0.1208,
+      "confusion": {
+        "tn": 3996,
+        "fp": 453,
+        "fn": 406,
+        "tp": 152
+      }
+    },
+    "fixed_0.20": {
+      "threshold": 0.2,
+      "recall": 0.8172,
+      "precision": 0.1253,
+      "f2": 0.3884,
+      "flagged_share": 0.7266,
+      "confusion": {
+        "tn": 1267,
+        "fp": 3182,
+        "fn": 102,
+        "tp": 456
+      }
+    },
+    "optimised": {
+      "threshold": 0.31,
+      "recall": 0.5502,
+      "precision": 0.1745,
+      "f2": 0.3846,
+      "flagged_share": 0.3513,
+      "confusion": {
+        "tn": 2997,
+        "fp": 1452,
+        "fn": 251,
+        "tp": 307
+      }
+    }
+  },
+  "random_forest": {
+    "default_0.50": {
+      "threshold": 0.5,
+      "recall": 0.0143,
+      "precision": 0.381,
+      "f2": 0.0178,
+      "flagged_share": 0.0042,
+      "confusion": {
+        "tn": 4436,
+        "fp": 13,
+        "fn": 550,
+        "tp": 8
+      }
+    },
+    "fixed_0.20": {
+      "threshold": 0.2,
+      "recall": 0.7724,
+      "precision": 0.138,
+      "f2": 0.4024,
+      "flagged_share": 0.6239,
+      "confusion": {
+        "tn": 1756,
+        "fp": 2693,
+        "fn": 127,
+        "tp": 431
+      }
+    },
+    "optimised": {
+      "threshold": 0.26,
+      "recall": 0.5484,
+      "precision": 0.1835,
+      "f2": 0.3923,
+      "flagged_share": 0.3331,
+      "confusion": {
+        "tn": 3087,
+        "fp": 1362,
+        "fn": 252,
+        "tp": 306
+      }
+    }
+  },
+  "xgboost": {
+    "default_0.50": {
+      "threshold": 0.5,
+      "recall": 0.086,
+      "precision": 0.3265,
+      "f2": 0.1009,
+      "flagged_share": 0.0294,
+      "confusion": {
+        "tn": 4350,
+        "fp": 99,
+        "fn": 510,
+        "tp": 48
+      }
+    },
+    "fixed_0.20": {
+      "threshold": 0.2,
+      "recall": 0.5323,
+      "precision": 0.175,
+      "f2": 0.378,
+      "flagged_share": 0.3389,
+      "confusion": {
+        "tn": 3049,
+        "fp": 1400,
+        "fn": 261,
+        "tp": 297
+      }
+    },
+    "optimised": {
+      "threshold": 0.2,
+      "recall": 0.5323,
+      "precision": 0.175,
+      "f2": 0.378,
+      "flagged_share": 0.3389,
+      "confusion": {
+        "tn": 3049,
+        "fp": 1400,
+        "fn": 261,
+        "tp": 297
+      }
+    }
+  }
+}

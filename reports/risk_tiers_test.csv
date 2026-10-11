@@ -1,0 +1,5 @@
+tier,crashes,high_risk_rate,severe,share_of_crashes,share_of_severe,lift
+Low,2532,0.0932,236,0.5057,0.4229,0.8364
+Moderate,1537,0.1074,165,0.307,0.2957,0.9633
+High,697,0.1263,88,0.1392,0.1577,1.1329
+Very High,241,0.2863,69,0.0481,0.1237,2.5691
