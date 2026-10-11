@@ -1,0 +1,14 @@
+data/**/*.csv
+data/**/*.parquet
+data/**/*.graphml
+data/cache/osmnx_http/
+models/*.joblib
+logs/
+__pycache__/
+.pytest_cache/
+.venv/
+node_modules/
+package-lock.json
+package.json
+scripts/report/data.json
+.tmp/

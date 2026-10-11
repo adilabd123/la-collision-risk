@@ -2,6 +2,11 @@
 
 Spatial risk engine built on 25,000 Los Angeles collision records.
 
+> **Note:** the collision dataset is **synthetic**, generated to resemble LAPD open collision
+> data, so results demonstrate the method rather than real-world risk. Reported results were
+> produced on a synthetic street grid (`scripts/run_pipeline_offline.py`); with internet access
+> the pipeline uses the real OpenStreetMap network.
+
 ## Layout
 ```
 la-collision-risk/
@@ -18,6 +23,7 @@ la-collision-risk/
 │   ├── inference.py         # shared train/serve: hotspot matcher, scorer
 │   └── train.py             # SMOTE, class weights, thresholds, tiers (Stage 4)
 ├── api/app.py               # FastAPI /predict service                (Stage 5)
+├── scripts/                 # one-command offline run, comparisons, report builder
 ├── models/                  # risk_model.joblib (served), _claims_triage variant
 ├── Dockerfile, requirements.txt, requirements-dev.txt
 ├── tests/                   # pytest, runs offline on a synthetic road grid
@@ -36,6 +42,9 @@ python -m src.clustering                            # DBSCAN hotspots
 python -m src.train                                 # underwriting model → models/risk_model.joblib
 python -m src.train --feature-set claims_triage     # optional post-crash model
 uvicorn api.app:app --reload                        # http://localhost:8000/docs
+```
+Or simply double-click **run_project.bat** (Windows) / run `./run_project.sh` (Mac/Linux) for a menu that sets everything up.
+```bash
 pip install -r requirements-dev.txt && pytest -q    # 58 tests, offline
 ```
 Passing `--graphml` to the generator plants intersection and corridor hotspots on the real
@@ -45,6 +54,16 @@ has no road structure to find. The first `ingestion` run downloads the City of L
 
 Environment overrides use the `CRS_RISK_` prefix, e.g. `CRS_RISK_N_RECORDS=5000`,
 `CRS_RISK_MAX_SNAP_M=30`.
+
+## Reproduce every result offline
+No internet needed — this builds a synthetic street grid over LA and runs every stage:
+```bash
+python scripts/run_pipeline_offline.py      # data → snapping → features → DBSCAN → models (~5–10 min)
+python scripts/compare_oversamplers.py      # SMOTE vs SMOTENC vs class weights
+python scripts/make_report_figures.py       # extra figures for the report
+python scripts/report/build_data.py         # collect every number for the report
+npm install docx && node scripts/report/build_report.js   # → reports/LA_Collision_Insurance_Risk_Report.docx
+```
 
 ## Outputs
 * `data/processed/la_collisions_snapped.parquet` — GeoParquet, EPSG:32611; `geometry` is the
@@ -84,6 +103,11 @@ before using `in_hotspot` / `cluster_type` as model features, or it leaks.
   0.50 and 0.20 reported alongside (`reports/threshold_metrics.json`).
 * 4 tiers: crash level = out-of-fold probability quantiles (50/80/95 %); road-segment level =
   expected severe crashes per year (`data/processed/la_segment_risk_tiers.parquet`).
+
+## Dashboard
+Open **http://localhost:8000/dashboard** while the API runs (run_project.bat option 3): headline
+findings, a map of hotspots and high-risk roads, risk tiers, model scores, the riskiest areas, and a
+"try a scenario" panel — click the map, set driver and vehicle, get a risk tier.
 
 ## API (Stage 5)
 ```bash

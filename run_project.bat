@@ -9,6 +9,15 @@ setlocal
 cd /d "%~dp0"
 set "GRAPH=%~dp0data\cache\test_grid.graphml"
 
+REM ---- keep everything on this drive (nothing written to C:) ------------
+REM pip's cache and temporary files normally go to C:\Users\...; send them
+REM into a .tmp folder next to this file instead, and don't keep a cache.
+if not exist "%~dp0.tmp" mkdir "%~dp0.tmp"
+set "TEMP=%~dp0.tmp"
+set "TMP=%~dp0.tmp"
+set "PIP_NO_CACHE_DIR=1"
+set "MPLCONFIGDIR=%~dp0.tmp\matplotlib"
+
 REM ---- find Python ---------------------------------------------------
 set "PY="
 where py >nul 2>nul && set "PY=py -3"
@@ -37,7 +46,7 @@ echo   LA Collision Insurance Risk System
 echo =============================================================
 echo   1. Run the full pipeline (data, hotspots, models)   ~5-10 min
 echo   2. Run the automated tests
-echo   3. Start the API and open it in the browser
+echo   3. Open the dashboard (starts the API)
 echo   4. Rebuild the Word report  (needs Node.js)
 echo   5. Do everything: pipeline, tests, then start the API
 echo   0. Exit
@@ -79,10 +88,10 @@ if not exist "%GRAPH%" (
     call :pipeline || exit /b 1
 )
 echo.
-echo Starting the API at http://localhost:8000/docs
+echo Starting the dashboard at http://localhost:8000/dashboard  (API docs: /docs)
 echo (Loading the road network takes ~20-60 s. Press Ctrl+C to stop the API.)
 set "CRS_RISK_GRAPHML=%GRAPH%"
-start "" cmd /c "timeout /t 25 >nul & start http://localhost:8000/docs"
+start "" cmd /c "timeout /t 25 >nul & start http://localhost:8000/dashboard"
 "%VPY%" -m uvicorn api.app:app --host 127.0.0.1 --port 8000
 exit /b 0
 
